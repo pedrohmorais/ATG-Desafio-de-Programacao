@@ -36,9 +36,10 @@
 > 2.1 (Bônus) Atualizar as cotações a cada 30 segundos, marcando quais subiram ou desceram.
 
 
- - Para facilitar a leitura, a maior parte das funcionalidades estão na própria index.html
+ - Para facilitar a leitura, a maior parte das funcionalidades estão na própria [index.html][Index2]
 
 
 [Ex1]: <https://github.com/pedrohmorais/ATG-Desafio-de-Programacao/blob/master/exercicio-1/exercicio-1/Program.cs>
 [Api]: <http://1forge.com/forex-data-api>
 [Info]: <https://stackoverflow.com/questions/10040954/alternative-to-google-finance-api>
+[Index2]: <https://github.com/pedrohmorais/ATG-Desafio-de-Programacao/blob/master/exercicio-2/index.html>
