@@ -21,4 +21,4 @@ Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered H
 
 O código está no arquivo [Program.cs][Ex1]
 
-[Ex1]: <https://github.com/pedrohmorais/ATG-Desafio-de-Programacao/exercicio-1/exercicio-1/Program.cs>
+[Ex1]: <https://github.com/pedrohmorais/ATG-Desafio-de-Programacao/blob/master/exercicio-1/exercicio-1/Program.cs>
