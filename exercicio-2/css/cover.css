@@ -10,6 +10,9 @@ a:hover {
 }
 
 /* Custom default button */
+.btn {
+  cursor: pointer;
+}
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
@@ -26,8 +29,9 @@ a:hover {
 
 html,
 body {
+  overflow-x: hidden;
   height: 100%;
-  background-color: #333;
+  background-color: #74748b;
 }
 body {
   color: #fff;
@@ -119,12 +123,27 @@ body {
  * Custom
  */
  #tabela-cotacoes td.up {
-  color: green;
+  color: #80ff80;
+  text-shadow: 0 0px 1px rgba(0, 153, 0,.8);
  }
  #tabela-cotacoes td.down {
-  color: red;
+  color: #ffaaaa;
+  text-shadow: 0 0px 1px rgba(255, 51, 0,.9);
+ }
+ #tabela-cotacoes td.up svg {
+  box-shadow: 0 0px 1px rgba(0, 153, 0,.8);
+ }
+ #tabela-cotacoes td.down svg {
+  box-shadow: 0 0px 1px rgba(255, 51, 0,.9);
  }
 
+
+ .reload-div {
+  display: flex;
+ }
+ .reload-div svg {
+  margin: auto;
+ }
 /*
  * Footer
  */

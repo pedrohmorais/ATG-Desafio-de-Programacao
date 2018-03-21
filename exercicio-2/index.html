@@ -24,7 +24,7 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
+          <div class="masthead clearfix" style="position: static;">
             <div class="inner">
               <h3 class="masthead-brand">ATG: Desafio de Programação</h3>
               <nav class="nav nav-masthead">
@@ -38,58 +38,106 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Cotações</h1>
+            <h1 class="cover-heading mb-5">Cotações</h1>
             
             <div class="panel panel-default">
               <div class="panel-body">
                  
-                 <table id="tabela-cotacoes" class="vazia table table-bordered table-hover">
-                   <thead>
-                     <tr>
-								<th>Moeda</th>
-								<th>Preço</th>
-								<th>Oferta</th>
-								<th>Procura</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     <tr tipo="USDEUR">
-								<td>USD/EUR</td>
-								<td class="price"></td>
-								<td class="bid"></td>
-								<td class="ask"></td>
-							</tr>
-							<tr tipo="USDGBP">
-								<td>USD/GBP</td>
-								<td class="price"></td>
-								<td class="bid"></td>
-								<td class="ask"></td>
-							</tr>
-							<tr tipo="USDJPY">
-								<td>USD/JPY</td>
-								<td class="price"></td>
-								<td class="bid"></td>
-								<td class="ask"></td>
-							</tr>
-							<tr tipo="USDCNH">
-								<td>USD/CNH</td>
-								<td class="price"></td>
-								<td class="bid"></td>
-								<td class="ask"></td>
-							</tr>
-                   </tbody>
-                 </table>
+								<table id="tabela-cotacoes" class="vazia table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Moeda</th>
+											<th>Preço</th>
+											<th>Oferta</th>
+											<th>Procura</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tipo="USDEUR">
+											<td>USD/EUR</td>
+											<td class="price"></td>
+											<td class="bid"></td>
+											<td class="ask"></td>
+										</tr>
+										<tr tipo="USDGBP">
+											<td>USD/GBP</td>
+											<td class="price"></td>
+											<td class="bid"></td>
+											<td class="ask"></td>
+										</tr>
+										<tr tipo="USDJPY">
+											<td>USD/JPY</td>
+											<td class="price"></td>
+											<td class="bid"></td>
+											<td class="ask"></td>
+										</tr>
+										<tr tipo="USDCNH">
+											<td>USD/CNH</td>
+											<td class="price"></td>
+											<td class="bid"></td>
+											<td class="ask"></td>
+										</tr>
+									</tbody>
+								</table>
                  
               </div>
             </div>
+						<h2 class="mb-5 mt-5">Converter Moeda</h2>
+
+						<div class="row">
+							<div class="col-lg-8 col-sm-10 col-xs-12 ml-auto mr-auto">
+								<form id="form-convert">
+									<div class="form-group text-left">
+										<label class="h5">Converter de:</label>
+										<select onch="trocarDe(this);"class="moeda-de form-control">
+											<option value="USD" selected>USD</option>
+											<option value="EUR">EUR</option>
+											<option value="GBP">GBP</option>
+											<option value="JPY">JPY</option>
+											<option value="CNH">CNH</option>
+										</select>
+									</div>
+									<div class="form-group text-left">
+											<label class="h5">Converter para:</label>
+											<select onch="trocarPara(this);"class="moeda-para form-control">
+												<option value="USD">USD</option>
+												<option value="EUR" selected>EUR</option>
+												<option value="GBP">GBP</option>
+												<option value="JPY">JPY</option>
+												<option value="CNH">CNH</option>
+											</select>
+										</div>
+									<div class="row">
+										<div class="text-left col-md-5 col-xs-12">
+											<label for="" class="h5">
+												Valor de: 
+											</label>
+											<input type="text" class="form-control money-field de" placeholder="USD">
+										</div>
+										<div class="reload-div col-md-2 col-sm-12 text-center hidden-md-down">
+											<i class="fas fa-sync-alt"></i>
+										</div>
+										<div class="text-left col-md-5 col-xs-12">
+											<label for="" class="h5">
+												Valor para:
+											</label>
+											<input type="text" class="form-control para" placeholder="EUR" readonly>
+										</div>
+									</div>
+								
+									<div class="form-group mt-4">
+										<button type="button" class="btn btn-lg btn-secondary" onclick="converter();">Converter</button>
+									</div>
+								
+								</form>
+							</div>
+						</div>
+						
+						
             
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-            </p>
           </div>
 
-          <div class="mastfoot">
+          <div class="row">
             <div class="inner">
               <p><i class="fab fa-github mr-1"></i> GitHub <a href="https://github.com/pedrohmorais/ATG-Desafio-de-Programacao">https://github.com/pedrohmorais/ATG-Desafio-de-Programacao</a></p>
             </div>
@@ -105,7 +153,9 @@
     ================================================== -->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.mask.js"></script>
+		
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 	 <script src="js/Forex.js"></script>
@@ -120,8 +170,8 @@
 		function montaForm(){
 			let tb = "#tabela-cotacoes";
 			let moedas = forex.getQuotes(quotes);
-			let upHt = `<i class="fas fa-angle-up ml-1" style="color: green;"></i>`;
-			let downHt = `<i class="fas fa-angle-down ml-1" style="color: red;"></i>`;
+			let upHt = `<i class="fas fa-angle-up ml-1" style="color: #80ff80;"></i>`;
+			let downHt = `<i class="fas fa-angle-down ml-1" style="color: #ffaaaa;"></i>`;
 
 			$(`${tb} tr > td .fa-angle-up`).remove();
 			$(`${tb} tr > td .fa-angle-down`).remove();
@@ -165,20 +215,57 @@
 					
 				});
 			//coloca as setas
+			$(`${tb} tr > td.up`).hide();
+			$(`${tb} tr > td.down`).hide();
+			$(`${tb} tr > td.up`).fadeIn(1200);
+			$(`${tb} tr > td.down`).fadeIn(1200);
 			$(`${tb} tr > td.up`).append(upHt);
 			$(`${tb} tr > td.down`).append(downHt);
 			//desmarca como vazia
 			$(`${tb}`).removeClass('vazia');
 		}
 
+		function converter(){
+			let form = "#form-convert";
+			let de = $(`${form} .moeda-de`).val();
+			let para = $(`${form} .moeda-para`).val();
+			let valor = $(`${form} .de`).val();
+
+			//verifica se os numeros são inteiros
+			console.log(parseInt(valor, 10) === NaN)
+			if (valor == "" || isNaN(valor)){
+					alert("O 'Valor de conversão' deve ser inteiro");
+					return;
+			}
+			let vlConv = forex.convert(de,para,valor);
+			if (vlConv.value == undefined){
+				alert(vlConv.message != undefined ? vlConv.message : vlConv);
+			}
+			else {
+				$(`${form} .para`).val(vlConv.value);
+			}
+		}
+
+		function trocarDe(el){
+			console.log(el);
+			$("#form-convert .de").attr("placeholder",$(el).val());
+		}
+		function trocarPara(el){
+			console.log(el);
+			$("#form-convert .para").attr("placeholder",$(el).val());
+		}
 
 		//ready
 		$(document).ready(function () {
 			montaForm();
+
+			$(".money-field").mask("#", {reverse: true});
 		});
+
+		//bonus
 		var constantLoader = setInterval(function(){
 			montaForm();
-		}, 3000);
+		}, 30000);
 	 </script>
   </body>
 </html>
