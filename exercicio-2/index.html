@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Exercício 2">
+    <meta name="author" content="Pedro Henrique de Morais">
+
+    <title>Exercício 2</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
+    <script src="js/fontawesome-all.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">ATG: Desafio de Programação</h3>
+              <nav class="nav nav-masthead">
+                <!--
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Contact</a>
+                -->
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Cotações</h1>
+            
+            <div class="panel panel-default">
+              <div class="panel-body">
+                 
+                 <table id="tabela-cotacoes" class="vazia table table-bordered table-hover">
+                   <thead>
+                     <tr>
+								<th>Moeda</th>
+								<th>Preço</th>
+								<th>Oferta</th>
+								<th>Procura</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr tipo="USDEUR">
+								<td>USD/EUR</td>
+								<td class="price"></td>
+								<td class="bid"></td>
+								<td class="ask"></td>
+							</tr>
+							<tr tipo="USDGBP">
+								<td>USD/GBP</td>
+								<td class="price"></td>
+								<td class="bid"></td>
+								<td class="ask"></td>
+							</tr>
+							<tr tipo="USDJPY">
+								<td>USD/JPY</td>
+								<td class="price"></td>
+								<td class="bid"></td>
+								<td class="ask"></td>
+							</tr>
+							<tr tipo="USDCNH">
+								<td>USD/CNH</td>
+								<td class="price"></td>
+								<td class="bid"></td>
+								<td class="ask"></td>
+							</tr>
+                   </tbody>
+                 </table>
+                 
+              </div>
+            </div>
+            
+            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+            <p class="lead">
+              <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p><i class="fab fa-github mr-1"></i> GitHub <a href="https://github.com/pedrohmorais/ATG-Desafio-de-Programacao">https://github.com/pedrohmorais/ATG-Desafio-de-Programacao</a></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- JavaScript
+    ================================================== -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+	 <script src="js/Forex.js"></script>
+	 <script>
+		let forex = new Forex("zrU7xX7wIzHLLD2pZho28vsbqvqGhD4k");
+		var quotes = [
+			"USDEUR",
+			"USDGBP",
+			"USDJPY",
+			"USDCNH"
+		]
+		function montaForm(){
+			let tb = "#tabela-cotacoes";
+			let moedas = forex.getQuotes(quotes);
+			let upHt = `<i class="fas fa-angle-up ml-1" style="color: green;"></i>`;
+			let downHt = `<i class="fas fa-angle-down ml-1" style="color: red;"></i>`;
+
+			$(`${tb} tr > td .fa-angle-up`).remove();
+			$(`${tb} tr > td .fa-angle-down`).remove();
+			$(`${tb} tr > td`).removeClass('up');
+			$(`${tb} tr > td`).removeClass('down');
+
+			$(moedas).each(function (k, v) {
+				let el = $(`${tb} > tbody > tr[tipo=${v.symbol}]`);
+				console.log(el);
+				let elPrice = $(el).find(".price");
+				let elBid = $(el).find(".bid");
+				let elAsk = $(el).find(".ask");
+				//old prices
+				let oldPrice = $(elPrice).html();
+				let oldBid = $(elBid).html();
+				let oldAsk = $(elAsk).html();
+
+				$(elPrice).html(v.price);
+				$(elBid).html(v.bid);
+				$(elAsk).html(v.ask);
+				if($(`${tb}`).hasClass('vazia')){
+					return;
+				}
+				//se nao estiver vazia
+				
+				
+				if(oldPrice < v.price)
+					$(elPrice).addClass('up');								
+				if(oldBid < v.bid)
+					$(elBid).addClass('up');									
+				if(oldAsk < v.ask)
+					$(elAsk).addClass('up');	
+					
+				//caso menor
+				if(oldPrice > v.price)
+					$(elPrice).addClass('down');								
+				if(oldBid > v.bid)
+					$(elBid).addClass('down');									
+				if(oldAsk > v.ask)
+					$(elAsk).addClass('down');	
+					
+				});
+			//coloca as setas
+			$(`${tb} tr > td.up`).append(upHt);
+			$(`${tb} tr > td.down`).append(downHt);
+			//desmarca como vazia
+			$(`${tb}`).removeClass('vazia');
+		}
+
+
+		//ready
+		$(document).ready(function () {
+			montaForm();
+		});
+		var constantLoader = setInterval(function(){
+			montaForm();
+		}, 3000);
+	 </script>
+  </body>
+</html>
